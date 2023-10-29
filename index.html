@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Answer Writing Timer</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-4">Answer Writing Timer</h1>
+        </div>
+        <div class="text-center mt-4">
+            <button id="btn-7-min" class="btn btn-primary timer-button">7 Minutes</button>
+            <button id="btn-11-min" class="btn btn-primary timer-button">11 Minutes</button>
+            <button id="start-btn" class="btn btn-success timer-button">Start</button>
+            <button id="reset-btn" class="btn btn-danger timer-button">Reset</button>
+        </div>
+        <div class="text-center mt-4">
+            <button id="done-btn" class="btn btn-danger timer-button" style="display: none;">Done</button>
+        </div>
+        <div class="text-center mt-4">
+            <div id="phase-display"></div>
+            <div id="timer-display" class="display-1">00:00</div>
+        </div>
+        <div class="text-center mt-4">
+            <div id="progress-indicator" class="progress", style="height: 20px;">
+              <div class="progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" >
+              </div>
+            </div>
+          </div>
+          
+          <table id="extra-time-log">
+            <!-- Extra time log table goes here -->
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
