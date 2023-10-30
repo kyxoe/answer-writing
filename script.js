@@ -52,7 +52,7 @@ function updateTimer() {
   } else {
     if (extraTime === 0) {
       // Timer has just reached zero, play the sound
-      const audio = new Audio('abc.mp3');
+      const audio = new Audio('abc.wav');
       audio.play();
     }
     extraTime++;
