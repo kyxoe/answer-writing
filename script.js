@@ -49,17 +49,12 @@ function updateTimer() {
     currentTime--;
     updateTimerDisplay();
     updateProgressIndicator();
+  
   } else {
-    if (extraTime === 0) {
-      // Timer has just reached zero, play the sound
-      const audio = new Audio('abc.wav');
-      audio.play();
-    }
+    // extraTime++;
     extraTime++;
     updateNegTimerDisplay();
   }
-}
-
 
 
 }
