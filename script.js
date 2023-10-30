@@ -14,14 +14,23 @@ const startButton = document.getElementById("start-btn");
 const doneButton = document.getElementById("done-btn");
 const resetButton = document.getElementById("reset-btn");
 
+
+function playAudio(audioFileName) {
+  const audio = new Audio(audioFileName);
+  audio.play();
+}
+
 // Event listeners for buttons
-document.getElementById("btn-7-min").addEventListener("click", () => setTotalTime(7 * 60));
-document.getElementById("btn-11-min").addEventListener("click", () => setTotalTime(11 * 60));
-startButton.addEventListener("click", startTimer);
+defaultTable();
+document.getElementById("btn-7-min").addEventListener("click", () => {setTotalTime(7 * 60); playAudio("button.mp3");});
+document.getElementById("btn-11-min").addEventListener("click", () => {setTotalTime(11 * 60); playAudio("button.mp3");});
+startButton.addEventListener("click", ()=> {startTimer(); playAudio("start.mp3");});
 resetButton.addEventListener("click", resetTimer);
 doneButton.addEventListener("click", () => {
     logExtraTime();
-    resetTimer(); // Call the resetTimer function when "Done" is pressed
+    playAudio('start.mp3');
+    resetTimer();
+
   });
 function setTotalTime(seconds) {
   totalTime = seconds;
@@ -44,20 +53,24 @@ function startTimer() {
   }
 }
 
+
 function updateTimer() {
   if (currentTime > 0) {
     currentTime--;
     updateTimerDisplay();
     updateProgressIndicator();
-  
   } else {
-    // extraTime++;
+    if (extraTime == 0) {
+      // Timer has just reached zero, play the sound
+      playAudio('abc.mp3')
+    }
     extraTime++;
     updateNegTimerDisplay();
   }
-
-
 }
+  
+
+
 function updateNegTimerDisplay() {
     const totalSeconds = currentTime + extraTime;
     const minutes = Math.floor(totalSeconds / 60);
@@ -107,25 +120,42 @@ function resetTimer() {
   phaseDisplay.textContent = ""; // Clear phase display
 }
 
+function defaultTable(){
+  const extraTimeLog = document.getElementById("extra-time-log");
+  const newRow = extraTimeLog.insertRow();
+  const cell1 = newRow.insertCell(0);
+  cell1.textContent = "Sr No.";
+  const cell2 = newRow.insertCell(1);
+  cell2.textContent = "Time";
+  const cell3 = newRow.insertCell(2);
+  cell3.textContent = "Time Δ"
+}
+
 function logExtraTime() {
   // Log extra time and update the table
   // Example code to log the extra time in a table:
   const extraTimeLog = document.getElementById("extra-time-log");
   const newRow = extraTimeLog.insertRow();
+
   const cell1 = newRow.insertCell(0);
-  cell1.textContent = extraTimeLog.rows.length; // Serial number
+  cell1.textContent = extraTimeLog.rows.length - 1; // Serial number
+
   const cell2 = newRow.insertCell(1);
-  console.log(totalTime);
-  console.log(currentTime);
-  console.log(extraTime);
+  cell2.textContent = totalTime + "min";
+
+  const cell3 = newRow.insertCell(2);
   if (currentTime<totalTime && currentTime!=0){
-    cell2.textContent = "+" + currentTime + " seconds";
+    cell3.textContent = "+ " + currentTime + " seconds";
   }
   else if (currentTime==0 && extraTime ==0 ){
-    cell2.textContent = extraTime + " seconds"; // Extra time taken
+    cell3.textContent = extraTime + " seconds"; // Extra time taken
 
   }
+  else if (currentTime == totalTime){
+    cell3.textContent = "0 seconds";
+  }
   else {
-    cell2.textContent = "-" + extraTime + " seconds"; // Extra time taken
+    cell3.textContent = "- " + extraTime + " seconds"; // Extra time taken
 }
+
 }
