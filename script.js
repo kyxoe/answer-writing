@@ -141,7 +141,7 @@ function logExtraTime() {
   cell1.textContent = extraTimeLog.rows.length - 1; // Serial number
 
   const cell2 = newRow.insertCell(1);
-  cell2.textContent = totalTime + "min";
+  cell2.textContent = (totalTime/60) + "min";
 
   const cell3 = newRow.insertCell(2);
   if (currentTime<totalTime && currentTime!=0){
