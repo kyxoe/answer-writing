@@ -44,18 +44,22 @@ function startTimer() {
   }
 }
 
-
 function updateTimer() {
   if (currentTime > 0) {
     currentTime--;
     updateTimerDisplay();
     updateProgressIndicator();
-  
   } else {
-    // extraTime++;
+    if (extraTime === 0) {
+      // Timer has just reached zero, play the sound
+      const audio = new Audio('abc.mp3');
+      audio.play();
+    }
     extraTime++;
     updateNegTimerDisplay();
   }
+}
+
 
 
 }
